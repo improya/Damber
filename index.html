@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANBER | Cintas y Desechables</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+            background: #F2F2F2;
+        }
+
+        /* Colores personalizados - Nueva paleta */
+        :root {
+            --deep-blue: #011C40;
+            --electric-blue: #0487D9;
+            --vibrant-orange: #F27405;
+            --passion-red: #A60303;
+            --clean-white: #F2F2F2;
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 25px 50px -12px rgba(1, 28, 64, 0.25);
+        }
+
+        .bg-deep-blue { background-color: var(--deep-blue); }
+        .text-deep-blue { color: var(--deep-blue); }
+        .bg-electric-blue { background-color: var(--electric-blue); }
+        .text-electric-blue { color: var(--electric-blue); }
+        .bg-vibrant-orange { background-color: var(--vibrant-orange); }
+        .text-vibrant-orange { color: var(--vibrant-orange); }
+        .bg-passion-red { background-color: var(--passion-red); }
+        .text-passion-red { color: var(--passion-red); }
+        .border-vibrant-orange { border-color: var(--vibrant-orange); }
+        .border-passion-red { border-color: var(--passion-red); }
+
+        /* Animaciones avanzadas */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(1deg); }
+            75% { transform: translateY(15px) rotate(-1deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(242, 116, 5, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(242, 116, 5, 0.6)); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes revealText {
+            from { 
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(166, 3, 3, 0.7); }
+            50% { box-shadow: 0 0 20px 10px rgba(166, 3, 3, 0.3); }
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Clases de animación */
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-glow {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-red {
+            animation: pulse-red 2s ease-in-out infinite;
+        }
+
+        .reveal-text {
+            animation: revealText 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Efectos hover profesionales */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--card-shadow);
+        }
+
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            filter: drop-shadow(0 0 15px rgba(242, 116, 5, 0.5));
+        }
+
+        .hover-border {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--vibrant-orange), transparent);
+            transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-border:hover::after {
+            left: 100%;
+        }
+
+        /* Glassmorphism mejorado */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(242, 116, 5, 0.2);
+        }
+
+        /* Grid interactivo */
+        .interactive-grid {
+            background-image: 
+                linear-gradient(rgba(242, 116, 5, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(242, 116, 5, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Efecto de partículas */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(242, 116, 5, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--deep-blue);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--vibrant-orange);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--passion-red);
+        }
+
+        /* Tarjetas 3D */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-3d-content {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-3d:hover .card-3d-content {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        /* Efecto de texto con gradiente */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--vibrant-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        /* Botón futurista con nuevos colores */
+        .futuristic-btn {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--deep-blue), var(--vibrant-orange));
+            background-size: 200% 100%;
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .futuristic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .futuristic-btn:hover {
+            background-position: 100% 0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(242, 116, 5, 0.5);
+        }
+
+        .futuristic-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Botón secundario */
+        .secondary-btn {
+            background: transparent;
+            border: 2px solid var(--vibrant-orange);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: var(--vibrant-orange);
+            color: var(--deep-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Observador de intersección */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-right {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-left {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Efectos especiales con nuevos colores */
+        .neon-orange {
+            text-shadow: 0 0 10px var(--vibrant-orange), 0 0 20px var(--vibrant-orange), 0 0 30px var(--vibrant-orange);
+        }
+
+        .neon-red {
+            text-shadow: 0 0 10px var(--passion-red), 0 0 20px var(--passion-red), 0 0 30px var(--passion-red);
+        }
+
+        /* Botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid white;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover::before {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+
+        /* Tooltip para WhatsApp */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: var(--deep-blue);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--vibrant-orange);
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 80px;
+        }
+    </style>
+</head>
+<body class="bg-[#F2F2F2] text-[#011C40]">
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/525569365760?text=Hola%20DANBER,%20quiero%20más%20información%20sobre%20sus%20productos" 
+       target="_blank" 
+       class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">¡Escríbenos!</span>
+    </a>
+
+    <!-- Partículas animadas -->
+    <div class="particles fixed inset-0 pointer-events-none z-0" id="particles"></div>
+
+    <!-- Navbar futurista -->
+    <nav class="glass-panel fixed top-0 left-0 right-0 z-50 border-b border-white/5" id="navbar" style="background: rgba(1, 28, 64, 0.95);">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 group">
+                <img src="image_997da0.jpeg" alt="Danber" class="h-12 w-auto transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 filter drop-shadow-lg">
+                <span class="text-2xl font-black tracking-tighter text-white relative">
+                    
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#F27405] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <div class="flex gap-6 font-medium text-sm uppercase tracking-widest text-white/80">
+                    <a href="#inicio" class="hover-border py-2 px-1 transition-colors hover:text-[#F27405]">Inicio</a>
+                    <a href="#nosotros" class="hover-border py-2 px-1 transition-colors hover:text-[#F27405]">Nosotros</a>
+                    <a href="#evolucion" class="hover-border py-2 px-1 transition-colors hover:text-[#F27405]">Evolución</a>
+                    <a href="#marcas" class="hover-border py-2 px-1 transition-colors hover:text-[#F27405]">Marcas</a>
+                    <a href="#productos" class="hover-border py-2 px-1 transition-colors hover:text-[#F27405]">Productos</a>
+                    <a href="#contacto" class="hover-border py-2 px-1 transition-colors hover:text-[#F27405]">Contacto</a>
+                </div>
+                
+                <a href="#contacto" class="futuristic-btn px-6 py-2.5 rounded-full text-sm relative overflow-hidden group">
+                    <span class="relative z-10">COTIZAR</span>
+                    <i class="fas fa-arrow-right ml-2 relative z-10 text-xs"></i>
+                </a>
+            </div>
+
+            <button class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header con efecto parallax -->
+    <header id="inicio" class="relative min-h-screen flex items-center overflow-hidden" style="background: linear-gradient(135deg, #011C40 0%, #0487D9 100%);">
+        <div class="interactive-grid absolute inset-0 opacity-30"></div>
+        
+        <!-- Elementos flotantes -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-[#F27405]/20 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#A60303]/20 rounded-full blur-3xl animate-float" style="animation-delay: -2s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl">
+                <span class="text-[#F27405] font-mono text-sm tracking-[0.3em] uppercase reveal-text inline-block mb-6">
+                    <i class="fas fa-cube mr-2"></i>Innovación en empaque
+                </span>
+                
+                <h1 class="text-7xl md:text-8xl font-black text-white leading-[0.9] mb-8">
+                    <span class="block reveal-text" style="animation-delay: 0.2s;">Empaque y</span>
+                    <span class="block gradient-text reveal-text" style="animation-delay: 0.4s;">Desechables</span>
+                    <span class="block text-white/80 reveal-text" style="animation-delay: 0.6s;">Sin Límites</span>
+                </h1>
+                
+                <p class="text-xl text-white/70 max-w-2xl mb-12 reveal-text font-light leading-relaxed" style="animation-delay: 0.8s;">
+                    Soluciones industriales estratégicas con tecnología de vanguardia y las marcas más confiables del mercado global.
+                </p>
+                
+                <div class="flex gap-4 reveal-text" style="animation-delay: 1s;">
+                    <a href="#contacto" class="futuristic-btn px-8 py-4 rounded-full text-base group">
+                        <span>CONTACTANOS</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                    <a href="#nosotros" class="border-2 border-[#F27405] px-8 py-4 rounded-full text-white hover:bg-[#F27405] hover:text-[#011C40] transition-all">
+                        <i class="fas fa-play mr-2"></i>DESCUBRIR
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicador scroll -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-xs text-white/50 tracking-widest"></span>
+            <div class="w-5 h-9 border-2 border-white/20 rounded-full flex justify-center">
+                <div class="w-1 h-2 bg-[#F27405] rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Nosotros con diseño futurista -->
+    <section id="nosotros" class="py-32 bg-[#F2F2F2] relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#F27405]/5 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-right">
+                    <span class="text-[#0487D9] font-mono text-sm tracking-widest uppercase mb-4 block">
+                        <i class="fas fa-robot mr-2"></i>Nuestra identidad
+                    </span>
+                    <h2 class="text-5xl font-black text-[#011C40] mb-8 leading-tight">
+                        Transformamos la industria del
+                        <span class="text-[#F27405] block">empaque industrial</span>
+                    </h2>
+                    
+                    <div class="space-y-6 text-[#011C40]/70 text-lg">
+                        <p class="leading-relaxed">
+                            Somos una <strong class="text-[#0487D9]">empresa emprendedora de vanguardia</strong> especializada en soluciones integrales de empaque, embalaje y desechables industriales.
+                        </p>
+                        <p class="leading-relaxed">
+                            A través de los años hemos desarrollado un ecosistema de suministro que integra las marcas más prestigiosas a nivel nacional e internacional, garantizando calidad certificada y precios competitivos.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 mt-12">
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-[#0487D9]">25+</div>
+                            <div class="text-xs uppercase tracking-wider text-[#011C40]/60">Años de experiencia</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-[#0487D9]">500+</div>
+                            <div class="text-xs uppercase tracking-wider text-[#011C40]/60">Clientes activos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-[#0487D9]">15+</div>
+                            <div class="text-xs uppercase tracking-wider text-[#011C40]/60">Marcas globales</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-left relative">
+                    <div class="card-3d">
+                        <div class="card-3d-content relative">
+                            <img src="https://images.unsplash.com/photo-1587293855526-d72ee9244983?q=80&w=2070" 
+                                 class="rounded-[2rem] shadow-2xl object-cover h-[600px] w-full">
+                            
+                            <!-- Overlay tecnológico -->
+                            <div class="absolute inset-0 rounded-[2rem] border-2 border-[#F27405]/30 pointer-events-none"></div>
+                            
+                            <!-- Badge flotante -->
+                            <div class="absolute -bottom-6 -right-6 bg-[#011C40] p-8 rounded-2xl border border-[#F27405]/20 backdrop-blur-sm animate-float">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-certificate text-4xl text-[#F27405]"></i>
+                                    <div>
+                                        <div class="text-3xl font-black text-[#F27405]">100%</div>
+                                        <div class="text-xs uppercase tracking-widest text-white/80">Satisfacción</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Elementos decorativos -->
+                            <div class="absolute top-10 left-10 w-20 h-20 border border-[#F27405]/30 rounded-full"></div>
+                            <div class="absolute bottom-10 right-10 w-32 h-32 border border-[#0487D9]/30 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Evolución con diseño tecnológico -->
+    <section id="evolucion" class="py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #011C40 0%, #0487D9 100%);">
+        <div class="interactive-grid absolute inset-0 opacity-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-right text-white">
+                    <span class="text-[#F27405] font-mono text-sm tracking-widest uppercase mb-4 block">
+                        <i class="fas fa-chart-line mr-2"></i>Innovación continua
+                    </span>
+                    
+                    <h2 class="text-5xl font-black mb-8 leading-tight">
+                        DANBER
+                        <span class="text-[#F27405] block mt-2">EVOLUCIONA</span>
+                    </h2>
+                    
+                    <p class="text-xl text-white/80 mb-12 border-l-4 border-[#F27405] pl-8 leading-relaxed font-light">
+                        "Nos transformamos para ofrecer soluciones integrales que van más allá del suministro básico, adaptándonos a la industria 4.0"
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass-panel p-8 rounded-2xl hover:scale-105 transition-all">
+                            <i class="fas fa-truck-fast text-3xl text-[#F27405] mb-4"></i>
+                            <h4 class="text-[#F27405] font-bold text-xl mb-2">Logística 4.0</h4>
+                            <p class="text-white/60 text-sm">Sistema de trazabilidad en tiempo real</p>
+                        </div>
+                        <div class="glass-panel p-8 rounded-2xl hover:scale-105 transition-all">
+                            <i class="fas fa-microchip text-3xl text-[#F27405] mb-4"></i>
+                            <h4 class="text-[#F27405] font-bold text-xl mb-2">Calidad Smart</h4>
+                            <p class="text-white/60 text-sm">Certificaciones internacionales ISO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-left relative">
+                    <div class="relative rounded-[3rem] overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070" 
+                             class="w-full h-[500px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#011C40]/80 via-transparent to-transparent"></div>
+                        
+                        <!-- Holograma efecto -->
+                        <div class="absolute bottom-8 left-8 right-8 glass-panel p-6 rounded-2xl backdrop-blur-md">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-[#F27405]/20 flex items-center justify-center">
+                                    <i class="fas fa-robot text-2xl text-[#F27405]"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold">Tecnología integrada</div>
+                                    <div class="text-white/60 text-sm">Sistemas de gestión automatizados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Marcas con diseño corporativo -->
+    <section id="marcas" class="py-32 bg-[#F2F2F2]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <span class="text-[#0487D9] font-mono text-sm tracking-widest uppercase mb-4 block">
+                    <i class="fas fa-handshake mr-2"></i>Alianzas estratégicas
+                </span>
+                <h2 class="text-4xl font-black text-[#011C40] mb-4">NUESTRAS MARCAS</h2>
+                <div class="w-24 h-1 bg-[#F27405] mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-12 items-center fade-up">
+                <div class="group relative">
+                    <img src="tuk.png" alt="Tuk" class="h-20 w-auto mx-auto object-contain grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-[#F27405]/0 group-hover:bg-[#F27405]/5 rounded-2xl transition-all"></div>
+                </div>
+                <div class="group relative">
+                    <img src="3m.jpg" alt="3M" class="h-20 w-auto mx-auto object-contain grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-[#F27405]/0 group-hover:bg-[#F27405]/5 rounded-2xl transition-all"></div>
+                </div>
+                <div class="group relative">
+                    <img src="navitek.png" alt="Navitek" class="h-20 w-auto mx-auto object-contain grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-[#F27405]/0 group-hover:bg-[#F27405]/5 rounded-2xl transition-all"></div>
+                </div>
+                <div class="group relative">
+                    <img src="shurtape.png" alt="Shurtape" class="h-20 w-auto mx-auto object-contain grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-[#F27405]/0 group-hover:bg-[#F27405]/5 rounded-2xl transition-all"></div>
+                </div>
+                <div class="group relative">
+                    <img src="Reyma.jpg" alt="Reyma" class="h-20 w-auto mx-auto object-contain grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-[#F27405]/0 group-hover:bg-[#F27405]/5 rounded-2xl transition-all"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto con diseño futurista -->
+    <section id="contacto" class="py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #011C40 0%, #0487D9 100%);">
+        <div class="interactive-grid absolute inset-0 opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Formulario futurista -->
+                <div class="fade-right">
+                    <div class="glass-panel p-10 rounded-[2.5rem] border-t-4 border-[#F27405]">
+                        <span class="text-[#F27405] font-mono text-sm tracking-widest uppercase mb-4 block">
+                            <i class="fas fa-headset mr-2"></i>Contacto inmediato
+                        </span>
+                        
+                        <h3 class="text-3xl font-black text-white mb-6">COTIZACIÓN <span class="text-[#F27405]">INTELIGENTE</span></h3>
+                        
+                        <form id="waForm" class="space-y-6">
+                            <div class="group">
+                                <label class="block text-xs font-medium uppercase text-white/60 mb-2 tracking-wider">
+                                    <i class="fas fa-user mr-2 text-[#F27405]"></i>Nombre completo
+                                </label>
+                                <input type="text" id="name" required 
+                                    class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-[#F27405] focus:bg-white/10 transition-all outline-none">
+                            </div>
+                            
+                            <div class="group">
+                                <label class="block text-xs font-medium uppercase text-white/60 mb-2 tracking-wider">
+                                    <i class="fas fa-tag mr-2 text-[#F27405]"></i>Línea de interés
+                                </label>
+                                <select id="category" 
+                                    class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-[#F27405] focus:bg-white/10 transition-all outline-none">
+                                    <option class="bg-[#011C40]">Cintas Industriales</option>
+                                    <option class="bg-[#011C40]">Desechables</option>
+                                    <option class="bg-[#011C40]">Stretch Film</option>
+                                    <option class="bg-[#011C40]">Otros Insumos</option>
+                                </select>
+                            </div>
+                            
+                            <div class="group">
+                                <label class="block text-xs font-medium uppercase text-white/60 mb-2 tracking-wider">
+                                    <i class="fas fa-pencil-alt mr-2 text-[#F27405]"></i>Detalles del pedido
+                                </label>
+                                <textarea id="msg" rows="4" 
+                                    class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-[#F27405] focus:bg-white/10 transition-all outline-none resize-none"></textarea>
+                            </div>
+                            
+                            <button type="submit" 
+                                class="futuristic-btn w-full py-5 rounded-xl text-lg group relative overflow-hidden">
+                                <span class="relative z-10 flex items-center justify-center gap-3">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                    SOLICITAR COTIZACIÓN
+                                    <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Información de contacto y mapa -->
+                <div class="fade-left space-y-6">
+                    <div class="glass-panel p-8 rounded-2xl hover:scale-[1.02] transition-all">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#F27405]/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-pin text-2xl text-[#F27405]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-[#F27405] font-bold text-xl mb-2">Sucursal Izcalli</h4>
+                                <p class="text-white/80 leading-relaxed">
+                                    Av. 1ro de Mayo / Quezalcoalt Col. Tepalcapa,<br>
+                                    54743 Cuautitlán Izcalli, Méx.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-2xl hover:scale-[1.02] transition-all">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#F27405]/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone-alt text-2xl text-[#F27405]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-[#F27405] font-bold text-xl mb-2">Contacto directo</h4>
+                                <p class="text-white/80">
+                                    +52 55 6936 5760<br>
+                                    dsandoval.tuk@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MAPA CORREGIDO -->
+                    <div class="rounded-2xl overflow-hidden border border-white/10 hover:border-[#F27405]/30 transition-all h-[300px]">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3757.841733362082!2d-99.2062148!3d19.6340629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21f38e94e917b%3A0xcf2f0b907fab2663!2sTapes%20y%20Empaques%20Danber!5e0!3m2!1ses-419!2smx!4v1773716395642!5m2!1ses-419!2smx" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer futurista con nuevos colores -->
+    <footer class="relative bg-[#011C40] border-t border-[#F27405]/20 overflow-hidden">
+        <!-- Fondo animado -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-[#F27405]/5 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#A60303]/5 rounded-full blur-3xl animate-float" style="animation-delay: -2s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Columna 1: Branding -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6 group">
+                        <img src="image_997da0.png" class="h-12 w-auto transition-all group-hover:rotate-12 group-hover:scale-110">
+                        <span class="text-2xl font-black text-white group-hover:text-[#F27405] transition-colors">DANBER</span>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed max-w-md">
+                        Líderes en soluciones de empaque industrial con tecnología de vanguardia y compromiso con la excelencia.
+                    </p>
+                    
+                    <div class="flex gap-4 mt-8">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#F27405] hover:text-[#011C40] transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#F27405] hover:text-[#011C40] transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#F27405] hover:text-[#011C40] transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Enlaces -->
+                <div>
+                    <h5 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">
+                        <i class="fas fa-link mr-2 text-[#F27405]"></i>Explorar
+                    </h5>
+                    <ul class="space-y-3">
+                        <li><a href="#inicio" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Inicio</a></li>
+                        <li><a href="#nosotros" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Nosotros</a></li>
+                        <li><a href="#evolucion" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Evolución</a></li>
+                        <li><a href="#marcas" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Marcas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Legal -->
+                <div>
+                    <h5 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">
+                        <i class="fas fa-file-contract mr-2 text-[#F27405]"></i>Legal
+                    </h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Términos y condiciones</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Aviso de privacidad</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-[#F27405] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-[#F27405]"></i>Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Línea divisoria con gradiente -->
+            <div class="h-px bg-gradient-to-r from-transparent via-[#F27405] to-transparent my-8"></div>
+
+            <!-- Copyright -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    © 2026 DANBER. Todos los derechos reservados.
+                </p>
+                <div class="flex gap-4">
+                    <span class="text-white/40 text-xs tracking-wider px-3 py-1 border border-[#F27405]/30 rounded-full hover:bg-[#F27405] hover:text-[#011C40] transition-all cursor-pointer">
+                        CALIDAD NACIONAL
+                    </span>
+                    <span class="text-white/40 text-xs tracking-wider px-3 py-1 border border-[#F27405]/30 rounded-full hover:bg-[#F27405] hover:text-[#011C40] transition-all cursor-pointer">
+                        INTERNACIONAL
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Posición aleatoria
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Opacidad aleatoria
+                particle.style.opacity = Math.random() * 0.5;
+                
+                // Color alternado entre naranja y rojo
+                const colors = ['#F27405', '#A60303', '#0487D9'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Animación
+                particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.backgroundColor = 'rgba(1, 28, 64, 0.98)';
+                navbar.classList.add('backdrop-blur-md');
+            } else {
+                navbar.style.backgroundColor = 'rgba(1, 28, 64, 0.95)';
+                navbar.classList.remove('backdrop-blur-md');
+            }
+        });
+
+        // Intersection Observer para animaciones de scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos los elementos con animación
+        document.querySelectorAll('.fade-up, .fade-right, .fade-left').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Formulario WhatsApp
+        document.getElementById('waForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const category = document.getElementById('category').value;
+            const msg = document.getElementById('msg').value;
+            
+            const phone = "525569365760"; 
+            
+            const message = `*COTIZACIÓN DANBER*%0A%0A` +
+                            `*Cliente:* ${name}%0A` +
+                            `*Línea:* ${category}%0A` +
+                            `*Detalles:* ${msg}`;
+            
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        });
+
+        // Inicializar partículas
+        createParticles();
+
+        // Efecto parallax suave
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
